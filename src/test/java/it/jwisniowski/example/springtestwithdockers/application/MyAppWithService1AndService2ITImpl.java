@@ -2,6 +2,7 @@ package it.jwisniowski.example.springtestwithdockers.application;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import it.jwisniowski.example.springtestwithdockers.application.externalservice.ParentContextNeedsToBeActiveContextInitializer;
 import it.jwisniowski.example.springtestwithdockers.application.externalservice.Service2ContextInitializer;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,10 @@ import org.springframework.test.context.TestPropertySource;
 @ContextHierarchy({
     @ContextConfiguration(initializers = Service2ContextInitializer.class),
     // force context reload
-    @ContextConfiguration(classes = MyAppContext.class)
+    @ContextConfiguration(classes = {
+        MyAppContext.class,
+        ParentContextNeedsToBeActiveContextInitializer.class
+    })
 })
 @TestPropertySource(properties = {
     "service2.host=${test.service2.host}",
