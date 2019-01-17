@@ -17,10 +17,9 @@ import org.springframework.test.context.junit4.rules.SpringMethodRule;
 @ContextHierarchy({
     @ContextConfiguration(initializers = Service1ContextInitializer.class),
     // force context reload
-    @ContextConfiguration(classes = {
-        MyAppContext.class,
-        ParentContextNeedsToBeActiveContextInitializer.class
-    })
+    @ContextConfiguration(
+        classes = MyAppContext.class,
+        initializers = ParentContextNeedsToBeActiveContextInitializer.class)
 })
 @TestPropertySource(properties = {
     "service1.host=${test.service1.host}",

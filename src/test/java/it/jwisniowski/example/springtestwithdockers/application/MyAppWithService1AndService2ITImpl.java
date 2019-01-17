@@ -13,10 +13,9 @@ import org.springframework.test.context.TestPropertySource;
 @ContextHierarchy({
     @ContextConfiguration(initializers = Service2ContextInitializer.class),
     // force context reload
-    @ContextConfiguration(classes = {
-        MyAppContext.class,
-        ParentContextNeedsToBeActiveContextInitializer.class
-    })
+    @ContextConfiguration(
+        classes = MyAppContext.class,
+        initializers = ParentContextNeedsToBeActiveContextInitializer.class)
 })
 @TestPropertySource(properties = {
     "service2.host=${test.service2.host}",
