@@ -6,9 +6,11 @@ import javax.validation.Valid;
 import org.apache.commons.lang3.builder.MultilineRecursiveToStringStyle;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
 @SuppressWarnings("unused")
 @ConfigurationProperties
+@Validated
 public class MyAppConfigurationProperties {
 
     @Valid
